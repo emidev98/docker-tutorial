@@ -171,7 +171,7 @@ docker push [dockerHubUserName]/ubuntu:hello-world
  - **EXPOSE** expose the docker container inner port outside the machine,
  - **CMD** finally execute the command to start the node environment with the index.js file.
 
-````Dockerfile
+```Dockerfile
 FROM node:12
 
 COPY [".", "/usr/src/"]
