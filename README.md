@@ -1,12 +1,12 @@
 # Introduction
 
-Docker is a container manager for applications to easy develop, deploy and run diferent environments to be able to help the Developers and SysAdmins to manage big infraestructures. Docker use images to create environments to run them like a "Virtual Machine" allocated in a system sharing the host hardware. I wrote duble quotes on Virtual Machine because during the guide you will see that some of the feature that give this technology is based on Virtualization but others not. For now you only have to understand that Docker images are running as a individual process that have a ammount of RAM, hard drive space and processor cores to do the specific task that is assigned to that image.
+Docker is a container manager for applications to easy develop, deploy and run diferent environments to be able to help the Developers and SysAdmins to manage big infraestructures. Docker use images to create environments to run them like a "Virtual Machine" allocated in a system sharing the host hardware. I wrote duble quotes on Virtual Machine because during the guide you will see that some of the feature that give this technology is based on Virtualization but others not. For now you only have to understand that Docker images are running as an individual process that have an ammount of RAM, hard drive space and processor cores to do the specific task that is assigned to that image.
 
 ![Docker Containers diagram](https://www.docker.com/sites/default/files/d8/styles/large/public/2018-11/container-what-is-container.png)
 
 # Run command 
 
-Starting from the basics of how to initialize a Docker container using an existing image the first command is "**docker run [imageName]**" which download a image (if that image is not already in local) from [hub.docker.com](https://hub.docker.com/search?q=&type=image) and start running it. For interactive processes (like a shell), you must use "**-it**" in order to allocate a tty for the container process otherwise the container will shutdown if there is no process running.
+Starting from the basics of how to initialize a Docker container using an existing image the first command is "**docker run [imageName]**" which download a image (if that image is not already in local machine) from [hub.docker.com](https://hub.docker.com/search?q=&type=image) and start running the image inside a container. For interactive processes (like a shell), you must use "**-it**" in order to allocate a tty for the container process otherwise the container will shutdown if there is no process running.
 
 ```Bash
 docker run -it [imageName]
@@ -37,7 +37,7 @@ In case we need to review information of our containers we can use the command "
 docker inspect edf98e996241 -f '{{json .Config}}'
 ```
 
-Once a container have been running and we want to delete it from our system we can use the command "**docker rm [CONTAINER_ID]**". One more useful flag for this command is "**-f**" which allow us to force delete a image no matter if is currently running.
+Once a container have been running and we want to delete it from our system we can use the command "**docker rm [CONTAINER_ID]**". One more useful flag for this command is "**-f**" which allow us to force delete an image no matter if is currently running.
 
 ```Bash
 docker rm -f image-name
@@ -45,7 +45,7 @@ docker rm -f image-name
 
 ## Already running containers
 
-One of the most useful commands for Docker is "**docker exec -it [containerName] bash**" that opens the **bash** process inside the container defined and we will be able to interact with the image using the bash sell (only if bash is available for that image).
+One of the most useful commands for Docker is "**docker exec -it [containerName] bash**" that opens the **bash** process inside the container defined and we will be able to interact with the image using the bash sell (only if bash is available inside that container).
 
 ```Bash
 docker exec -it [containerName] bash 
@@ -125,7 +125,7 @@ To see the network information:
 docker network inspect [networkName]
 ```
 
-The practical exercise here is to run a container exposing a inner port (Docker container port) to the virtual network and by the end of the command we set the imageName that we want to run on the container with the previous seted name.
+The practical exercise here is to run a container exposing an inner port (container port) to the virtual network and by the end of the command we set the imageName that we want to run inside the container with the previous configured name.
 
 ```Bash
 docker run -d --name [containerName] -p [exposedPort]:[innerPort] [imageName]
